@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单个插槽</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       通过slot标签来定位父组件的位置?????
+    -->
+    <app></app>
+</div>
+</body>
+</html>
+<script>
+    Vue.component('app',{
+        template:"<app-header>这是父组件的标题</app-header>"
+    })
+    Vue.component('appHeader',{
+        template:"<div><h2>我是子组件的标题</h2><slot></slot></div>"
+    })
+    new Vue({
+        el:'#app'
+    })
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>循环输出</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+     <div id="app">
+         <ul>
+             <li v-for="value in result">{{value.name}}</li>
+             <li v-for="age in result">{{age.age}}</li>
+         </ul>
+     </div>
+
+</body>
+</html>
+<script>
+    var app2 = new Vue({
+        el:'#app',
+        data:{
+            result:[
+                {name:"HTML权威指南",age:0},
+                {name:"CSS从入门到精通",age:1},
+                {name:"JAVAScript快速入门",age:2}
+            ]
+        }
+    })
+</script>

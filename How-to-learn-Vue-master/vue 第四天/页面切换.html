@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面切换Demo</title>
+    <link rel="stylesheet" href="./animate.css">
+    <script src="vue.js"></script>
+    <style>
+        html,body{
+            margin:0;
+            padding:0;
+        }
+        #app{
+            width: 100%;
+            height: 100%;
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            background-color: #ff6700;
+        }
+        header{
+            width: 100%;
+            height: 30px;
+            margin:0;
+            padding:0;
+            display: flex;
+            line-height:30px;
+        }
+        header>div{
+            width: 33.33%;
+            height: 100%;
+            background-color: #333;
+            text-align: center;
+            color: #fff;
+        }
+        #red{
+            width: 100%;
+            height: 800px;
+            background-color: red;
+        }
+        #blue{
+            width: 100%;
+            height: 800px;
+            background-color: blue;
+        }
+        #green{
+            width: 100%;
+            height: 800px;
+            background-color: green;
+        }
+        /*---------------------动画---------------*/
+        .child-view {
+            position: absolute;
+            width:100%;
+            /*transition: all .8s cubic-bezier(.55,0,.1,1);*/
+            transition: all 1s linear;
+        }
+        .slide-left-enter, .slide-right-leave-active{
+            opacity: 1;
+            -webkit-transform: translate(100px, 0);
+            transform: translate(1000px, 0);
+        }
+        .slide-left-leave-active, .slide-right-enter {
+            opacity: 1;
+            -webkit-transform: translate(-100px, 0);
+            transform: translate(-1000px, 0);
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <header>
+        <div class="red" @click="name='red'">红红火火</div>
+        <div class="blue" @click="name='green'">绿色蔬菜</div>
+        <div class="green" @click="name='blue'">蓝天白云</div>
+    </header>
+
+    <transition :name="transitionName">
+        <c-body :is="name" class="child-view"></c-body>
+    </transition>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:'.child-view',
+        data:{
+            transitionName: 'slide-left',
+            name:'red',
+            num:'1'
+        },
+        components:{
+            red:{
+                template:'<div id="red">红</div>'
+            },
+            blue:{
+                template:'<div id="blue">蓝</div>'
+            },
+            green:{
+                template:'<div id="green">绿</div>'
+            }
+        },
+        computed:{
+            ...show({
+                console.log('实时监控')
+            })
+        }
+    })
+</script>

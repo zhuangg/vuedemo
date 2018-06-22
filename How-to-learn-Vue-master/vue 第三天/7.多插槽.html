@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>具名插槽</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        赋值template一个ID,将组件写在HTML的script标签中
+        利用组件中标签的name属性,赋值给slot对应名称的标签
+    -->
+    <script type="text/x-template" id="temp">
+        <div>
+            <header>
+                <slot name="header"></slot>
+            </header>
+            <main>
+                <slot></slot>
+            </main>
+            <footer>
+                <slot name="footer"></slot>
+            </footer>
+        </div>
+    </script>
+    <app>
+        <h1 slot="header">标题</h1>
+        <p>内容</p>
+        <p slot="footer">尾部</p>
+    </app>
+</div>
+</body>
+</html>
+<script>
+    Vue.component('app',{
+        template:'#temp'
+    })
+    new Vue({
+        el:"#app"
+    })
+</script>

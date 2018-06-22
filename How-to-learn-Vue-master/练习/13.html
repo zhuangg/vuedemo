@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">    <!--
+        增加: push向数组后面添加新的数据
+        删除: splice(key,1)删除当前的数据
+        v-model 绑定data中的数据,双向绑
+        使用for...in/of 循环输出/创建标签
+    -->
+    <input v-model="newTodo" v-on:keyup.enter="addNewTodo">
+    <ul>
+        <li v-for="(item,key) in todoList">
+            title:{{item.title}}
+            <button v-on:click="removeTodo(key)">X</button>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    var app2 = new Vue({
+        el:'#app',
+        data:{
+            newTodo:'',//新增的内容
+            todoList:[
+                {
+                    title:'this is one'
+                },
+                {
+                    title:'this is two'
+                }
+            ]//存放数据的列表
+        },
+        methods:{
+            addNewTodo:function(){
+                this.todoList.push({
+                    title:this.newTodo
+                })
+            },
+            removeTodo:function(key){
+                this.todoList.splice(key,1);
+            }
+        }
+    })
+</script>

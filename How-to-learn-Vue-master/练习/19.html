@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>props传值</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component v-bind:data="message"></my-component>
+</div>
+</body>
+</html>
+<script>
+    Vue.component('myComponent',{
+        creatd:function(){
+            console.log(this.data);//world
+            this.change();
+            console.log(this.data);//world
+        },
+        //声明一个props,接收message的值
+        //子组件通过props接收到了来自父组件的message变量
+        //并将其赋值给了data,子组件内部就可以使用来自message的值了
+        props:['data'],
+        //template里面必须要有一个标签作为根元素
+        template:'<div>{{data}}</div>',
+        data:function(){
+            return {
+                //data的值不能直接改变,props每次传递过来的值都会 初始化
+                //但是可以通过赋值给result,改变result的值
+                result: this.data
+            }
+        },
+        methods:{
+            change:function(){
+//                this.data = this.data + 'hello';//不能修改data的值,同时会报错
+//                this.data.trim().concat('hello');
+                this.result = this.result + 'htllo';
+                console.log(result);
+            }
+        }
+    })
+    new Vue({
+        el:'#app',
+        data:{
+            //父组件如果发生改变,则子组件中通过props接收过去的值也会变化
+            message:'hello'
+        }
+    })
+</script>

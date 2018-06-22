@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title声明式渲染</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <span v-bind:title="message">我是说明文字</span>
+        <p v-if="seen">我是隐藏或者显示</p>
+    </div>
+    <script src="vue.js"></script>
+</body>
+</html>
+<script>
+    <!--
+    new Vue({}) 叫做  根实例
+    -->
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'hello world!!',
+            seen:true
+        }
+    })
+</script>

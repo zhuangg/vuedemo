@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-for="(value,index) in message">
+        {{value.name}}
+        {{index}}
+    </div>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message:[
+                {name:'余挽澜'},
+                {name:'张三'},
+                {name:'李四'}
+            ]
+        }
+    })
+</script>

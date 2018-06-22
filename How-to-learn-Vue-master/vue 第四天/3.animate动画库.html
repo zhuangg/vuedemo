@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>animate动画库</title>
+    <link rel="stylesheet" href="animate.css">
+    <script src="vue.js"></script>
+    <style>
+        p{
+            width: 100px;
+            height: 100px;
+            background-color: #ff6700;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="show=!show">Toggle</button>
+    <!--使用animate动画库-->
+    <transition name="animate" enter-active-class="animated bounceInDown" leave-active-class="animated bounceOutUp">
+        <p v-if="show"></p>
+    </transition>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            show:true
+        }
+    })
+</script>

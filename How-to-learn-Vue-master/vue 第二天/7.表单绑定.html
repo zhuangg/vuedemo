@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单绑定</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        通过model绑定的属性来获取表单中value的值,若选中,则值可用
+    -->
+    <!-- .lazy是用在change上的时候才会触发变化 -->
+    <!-- .number直接转化为数字 -->
+    <!-- .trim直接将左右两边的空格去掉 -->
+    <input v-model.lazy="message">
+    <p>{{message}}</p>
+    <!--复选框绑定的值是布尔值,选中true,未选中false-->
+    <input type="checkbox" v-model="checked">
+    {{checked}} <br>
+    <!--多选复选框可以绑定到一个数组上-->
+    <div>
+        <label>jack文字文字文字</label>
+        <input type="checkbox" value="jack" v-model="names">
+        <label>rose</label>
+        <input type="checkbox" value="rose" v-model="names">
+        <label>tom</label>
+        <input type="checkbox" value="tom" v-model="names"> <br>
+        result:{{names}}
+    </div>
+    <!--单选框-->
+    <div>
+        <label>男</label>
+        <input type="radio" value="man" v-model="sex">
+        <label>女</label>
+        <input type="radio" value="woman" v-model="sex"> <br>
+        you sex: {{sex}}
+    </div>
+    <!--下拉菜单 单选-->
+    <div>
+        <select v-model="selected">
+            <option value="banana">香蕉</option>
+            <option value="apple">苹果</option>
+            <option value="orange">橘子</option>
+        </select>
+        you choice: {{selected}}
+    </div>
+    <!--下拉菜单 可以多选-->
+    <div>
+        <select multiple v-model="selectedList">
+            <option value="banana">香蕉</option>
+            <option value="apple">苹果</option>
+            <option value="orange">橘子</option>
+        </select>
+        you choose:{{selectedList}}
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var app2 = new Vue({
+        el:'#app',
+        data:{
+            message:'hello',
+            checked:false,
+            names:[],
+            sex:null,
+            selected:null,
+            selectedList:[]
+        }
+    })
+</script>

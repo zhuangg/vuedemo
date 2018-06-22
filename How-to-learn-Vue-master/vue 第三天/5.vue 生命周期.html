@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue生命周期</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        生命周期 ~创建 ~安装 (~修改) ~销毁
+    -->
+    {{message}}
+    <com1></com1>
+</div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'hello world'
+        },
+        //beforeCreate 第一阶段  创建
+        beforeCreate:function(){
+            console.log('beforeCreate阶段');
+            console.log(this.$el);
+        },
+        //created 第二阶段
+        created:function(){
+            console.log('created阶段');
+            console.log(this.$el);
+        },
+        //beforeMount 第三阶段
+        beforeMount:function(){
+            console.log('beforeMount阶段');
+            console.log(this.$el);
+        },
+        //mounted 第四阶段  安装
+        mounted:function(){
+            console.log('mounted阶段');
+            console.log(this.$el);
+        },
+        //beforeUpdate 第五阶段
+        beforeUpdate:function(){
+            console.log('beforeUpdate阶段');
+            console.log(this.message);
+        },
+        //updated 第六阶段
+        updated:function(){
+            console.log('updated阶段');
+            console.log(this.message);
+        },
+        //beforeDistory 第七阶段
+        beforeDestory:function(){
+            console.log('beforeDestory 阶段')
+        },
+        //distory 第八阶段
+        distory:function(){
+            console.log('distory阶段');
+        },
+        components:{
+            com1:{
+                template:'<div>我是组件内容</div>'
+            }
+        }
+    })
+</script>

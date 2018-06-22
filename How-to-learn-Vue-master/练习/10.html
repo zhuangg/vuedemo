@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        computed属性，可以缓存计算的值
+    -->
+    <!--监听可以用于登录注册时，时时判断用户名是否存在-->
+</div>
+</body>
+</html>
+<script>
+    var app2 = new Vue({
+        el:"#app",
+        data:{
+            message:"一句话"
+        },
+        //vue的方法
+        methods:{
+            DateNow:function () {
+                return Date.now();
+            }
+        },
+        //计算属性，通常会把一些需要进行复杂计算的属性放在这个位置
+        //比如说购物车里面的总价格、确认付款里面的总价格
+        //对比跟方法的优势是:它的计算总是在数据发生改变的时候才会发生，在数据不变化的时候，结果会缓存起来
+        compted:{
+            computed_DateNow:function () {
+                return Date.now()
+            }
+        }
+    })
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同级组件之间的通信</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        利用一个空的vue对象,配合$emit 和 $on 利用相同名称select,传递值
+    -->
+    <!--created阶段,组件刚刚创建出来-->
+    <com1></com1>
+    <com2></com2>
+    <!--mounted阶段,组件已经被解析出来了-->
+    <div>组件一</div>
+    <div>组件二</div>
+</div>
+</body>
+</html>
+<script>
+    // 创建一个空的vue对象
+    var bus = new Vue();
+    new Vue({
+        el:'#app',
+        components:{
+            com1:{
+                template:"<div>组件一</div>",
+                //monted 组件的声明周期
+                mounted:function(){
+                    bus.$emit('selected',1);
+                }
+            },
+            com2:{
+                template:"<div>组件二</div>",
+                created:function(){
+                    bus.$on('selected',function(value){
+                        console.log('事件触发成功');
+                        console.log(value);
+                    });
+                }
+            }
+        }
+    })
+</script>

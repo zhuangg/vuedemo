@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>组件的过渡</title>
+    <link rel="stylesheet" href="animate.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="name == 'v-one' ? name='v-two':name='v-one'">组件切换</button>
+    <transition name="change" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="linear" v-bind:duration="500">
+        <component v-bind:is="name"></component>
+    </transition>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            name:"v-one"
+        },
+        components:{
+            "v-one":{
+                template:'<div>v-one组件</div>'
+            },
+            "v-two":{
+                template:'<div>v-two组件</div>'
+            }
+        }
+    })
+</script>

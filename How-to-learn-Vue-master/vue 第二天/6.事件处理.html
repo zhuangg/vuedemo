@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        v-on 绑定事件,,,阻止事件传播  阻止事件默认行为
+    -->
+    <!--stopPropagation 阻止事件传播的-->
+    <a v-on:click.stop="">阻止事件传播</a>
+    <!--preventDefault 阻止事件默认行为-->
+    <a v-on:prevent="">阻止事件默认行为</a>
+    <!--事件触发一次-->
+    <a v-on:once=""></a>
+    <input v-on:keyup.enter="">
+    <input v-on:keyup.up="">
+    <input v-on:keyup.down="">
+    <!--鼠标事件:left,right,middle-->
+    <div @mousedown.left=""></div>
+    <div @mousedown.right=""></div>
+</div>
+</body>
+</html>
+<script>
+    var app2 = new Vue({
+        el:'#app',
+        data:{
+
+        },
+        methods:{
+
+        }
+    })
+</script>

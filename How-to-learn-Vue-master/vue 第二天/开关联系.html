@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-if="isShow">开启</div>
+    <div v-else>关闭</div>
+    <button v-on:click="show">显示隐藏</button>
+</div>
+</body>
+</html>
+<script>
+    var app2 = new Vue({
+        el:'#app',
+        data:{
+            message:'文字文字',
+            isShow:true
+        },
+        methods:{
+            show:function(){
+                this.isShow = !this.isShow;
+            }
+        }
+    })
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>动态组件</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        通过data中的name属性,重新赋值name
+        需要用v-bind绑定is属性
+    -->
+    <button v-on:click="name='user'">切换到user</button>
+    <button v-on:click="name='login'">切换到login</button>
+    <c-button></c-button>
+    <component v-bind:is="name"></component>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            name:'home'
+        },
+        components:{
+            home:{
+                template:"<div>我是home</div>",
+                destroyed:function(){
+                    //组件销毁的时候执行
+                    console.log('home组件销毁')
+                }
+            },
+            user:{
+                template:"<div style='width: 500px;height: 200px;background: #ff6700'>我是user</div>"
+            },
+            login:{
+                template:"<div style='width: 500px;height: 200px;background: darkseagreen'>我是login</div>"
+            }
+        }
+    })
+</script>

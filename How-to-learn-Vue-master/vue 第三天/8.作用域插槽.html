@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域插槽</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        组件标签中,,,在循环输出中使用,需要用v-bind:text='book.text'来绑定输出的值
+        实际书写的组件标签中需要 slot-scope='scope'来接收数据
+    -->
+    <script type="text/x-template" id="list">
+        <ul>
+            <slot name="list" v-for="book in bookList" v-bind:text="book.text"></slot>
+        </ul>
+    </script>
+    <awesome-list>
+        <li slot="list" slot-scope="scope">{{scope.text}}</li>
+        <!--<li slot="list2" slot-scope="scope">{{scope.name}}</li>-->
+    </awesome-list>
+</div>
+</body>
+</html>
+<script>
+    Vue.component('awesomeList',{
+        template:"#list",
+        data:function(){
+            return {
+                bookList:[
+                    {text:'21天精通HTML'},
+                    {text:'JavaScript基础'},
+                    {text:'c++入门'},
+                    {name:'张三'},
+                    {name:'李四'},
+                    {name:'王五'}
+                ]
+            }
+        }
+    })
+    new Vue({
+        el:"#app"
+    })
+</script>

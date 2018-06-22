@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件化</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <todo-item v-bind:todo="message"></todo-item>
+</div>
+</body>
+</html>
+<script>
+
+    Vue.component('todo-item',{
+        props:['todo'],
+        template:"<ul><li>第一个</li><li>第二个</li><li>{{todo}}</li></ul>"
+    })
+    var app2 = new Vue({
+        el:"#app",
+        data:{
+            message:'新的内容'
+        }
+    })
+</script>

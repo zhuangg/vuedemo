@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练练手</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-if=""></div>
+    <div v-else-if=""></div>
+    <div v-else=""></div>
+    <!--同一元素可以设置key来区分-->
+    <!--不区分会导致在切换时,不清空input中用户输入的内容-->
+    <input type="text" key="aa">
+    <input type="text" key="bb">
+    <!--
+        v-for 的优先级高于 v-if
+    -->
+    <ul>
+        <li v-for="item in items"></li>
+        <!--支持索引当做第二参数(可选项)-->
+        <li v-for="{item,index} in items"></li>
+        <!--
+            可以使用for...of 代替 for...in
+            循环输出 作为对象和作为数组都行
+            数组多索引
+            对象多 属性名和属性值(value,key,index)
+        -->
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message:'hello world',
+            isActive:true,
+            classObj:{
+                active:true,
+                blue:false,
+                red:true
+            },
+            items:[
+                {message:'列表一'},
+                {message:'列表二'},
+                {message:'列表三'}
+            ]
+        },
+        computed:{
+            //计算 拥有get和set属性
+            reversedMessage:function(){
+                return aaa;
+            }
+        },
+        methods:function(){
+            //方法
+        },
+        components:{
+            //组件
+        },
+        watch:{
+            //监听 可用于时时监听并调用methods中的方法
+            this.function(){}
+    }
+    })
+    Vue.component('new-tag',{
+        templete:'<p>Hi</p>'
+    })
+</script>

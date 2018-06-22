@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件式开发</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <header></header>
+    <main>
+        <todo-item v-bind:todo="message">
+            <todo-test>
+                <todo-view></todo-view>
+            </todo-test>
+        </todo-item>
+        <todo-main>
+            <todo-inside></todo-inside>
+            <todo-content></todo-content>
+        </todo-main>
+        <h2>{{message}}</h2>
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>
+<script>
+    //通过vue.component定义一个组件
+    //全局的组件
+    Vue.component('todo-item',{
+        //传值的属性
+        props:['todo'],//从父组件传递下来的数据挂载到子组件中的属性上
+        template:"<ul><li>香蕉</li><li>苹果</li><li>{{todo}}</li></ul>"
+    })
+    var app2 = new Vue({
+        el:"#app",//小组件传值给大组件
+        data:{
+            message:'我是根组件的数据'
+        }
+    })
+</script>

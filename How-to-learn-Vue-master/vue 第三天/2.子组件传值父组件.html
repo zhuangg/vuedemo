@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>子组件传值</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button>子组件触发父组件的事件</button>
+    <my-component v-on:boom="alert"></my-component>
+</div>
+</body>
+</html>
+<script>
+    Vue.component('myComponent',{
+        template:'<div>来吧来吧</div>',
+        created:function(){
+            console.log(1)
+            this.=('boom','子组件传递给父组件的数据');
+            //触发自定义状态的时候,自定义一定要定义在组件上,这时候,这个字组件才能触发这个状态
+            //$emit接收的第二个参数是,子组件传递给父组件的数据,可以在状态对应的回调函数中得到这个数据
+        }
+    })
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{
+            alert:function(str){
+                console.log(2)
+                alert('成功'+'  '+str)
+            }
+        }
+    })
+</script>

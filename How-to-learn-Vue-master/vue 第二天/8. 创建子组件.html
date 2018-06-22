@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        通过Vue.component来创建一个全局组件,template 创建组件的模板
+        props用来为子组件获取父组件的值
+        组件中的data必须要写成函数的形式
+    -->
+    <my-tag></my-tag>
+    <new-tag></new-tag>
+    <my-component></my-component>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message1:'这是全局下的message'
+        },
+        //注册一个局部组件
+        components:{
+            //在组件中,data必须写成函数形式
+            //保证每个组件中,数据都是独立存在的
+            'my-tag':{
+                data:function(){
+                    return{
+                        text:[
+                            'hello',
+                            'world',
+                            '你好'
+                        ]
+                    }
+                },
+                template:"<div>{{text}},this is mine</div>"
+            },
+            'new-tag':{
+                data:function(){
+                    return{
+                        text:'这是第二个自定义标签'
+                    }
+                },
+                template:"<div>{{text}}</div>"
+            }
+        }
+    })
+    Vue.component('my-component',{
+        template:'<p>{{message}}</p>',
+//        data:function(){
+//            return{
+//                message:'这是全局组件里的message'
+//            }
+//        }
+    })
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增强属性</title>
+    <script src="vue.js"></script>
+    <style>
+        .Active{
+            border: 1 px solid red;
+        }
+        .textDanger{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--
+        可以给class定义一个布尔值，来来决定是否生效
+        可以定义第二名称???
+        可以将类名或者属性放在数组中
+    -->
+    <div v-bind:class="{Active:isActive,
+textDanger:text_danger}">需要添加样式</div>
+    <div v-bind:class="[activeClass,textClass]">需要添加数组的样式</div>
+    <div v-bind:class="[{Active:isActive},textClass]">加强写法三</div>
+    <!--
+        如果组件名称中含有大写字母，那么在调用组件的时候，需要将这个组件的大写字母转化为小写，并在前边加上'-'
+    -->
+    <my-component></my-component>
+    <!--/绑定style属性-->
+    <div v-bind:style="styleObject">样式对象</div>
+</div>
+</body>
+</html>
+<script>
+    //创建组件
+    Vue.component('myComponent',{
+        //组件的模板中需要一个根元素，单独写两个Li,只能显示一个
+        template:<div>组件的内容</div>
+    })
+    var app2 = new Vue({
+        el:'#app',
+        data:{
+            message:"一句话",
+            isActive:true,
+            text_danger:true,
+            activeClass:'Active',
+            textClass:'textDanger',//数组形式取类名
+            styleObject:{
+                color:'blue',
+                fontSize:'30px'//绑定style属性
+            }
+        }
+    })
+</script>

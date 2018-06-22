@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        v-if赋予条件,决定标签是否被创建
+        v-show赋予条件,决定标签是否显示
+    -->
+    <div v-if="turn">
+        <p>外部要显示的内容</p>
+        <p>外部要显示的内容</p>
+        <p>外部要显示的内容</p>
+    </div>
+    <div v-else>外部要隐藏的内容</div>
+    <p v-if="key === 'A'">
+        key === A
+    </p>
+    <p v-else-if="key === 'B'">
+        key === B
+    </p>
+    <p v-else="key === 'C'">
+        key === C
+    </p>
+    <!--type和ID的值都不能缺少-->
+    <script type="text/x-template" id="temp1">
+        <!--template接收的值,内容较多的时候的写法-->
+        <!--<div>模板的HTML部分</div>-->
+        <div v-if="turn">
+            要显示的内容
+        </div>
+        <div v-else>要隐藏的内容</div>
+    </script>
+    <my-component></my-component>
+    <div v-show="turn">
+        v-show要显示的内容
+    </div>
+    <!--
+        v-if false的时候,不会渲染到页面上 会将之前true存在的元素从DOM中删除掉
+        v-show 则会渲染到页面上隐藏 display = none
+    -->
+</div>
+</body>
+</html>
+<script>
+    Vue.component('myComponent',{
+        template:'#temp1',//template可以接受一个id的值
+        data:function(){
+            return {
+                turn:true
+            }
+        }
+    })
+    var app2 = new Vue({
+        el:"#app",
+        data:{
+            turn:true,
+            key:'A'
+        }
+    })
+</script>

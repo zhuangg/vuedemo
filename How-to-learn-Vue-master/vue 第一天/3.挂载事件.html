@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>挂载事件</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{message}}</p>
+    <button v-on:click="reverseMessage">逆转文字</button>
+</div>
+</body>
+</html>
+<script>
+    var app2 = new Vue({
+        el:"#app",//vue启动时的作用域
+        data:{
+            message:"我是超人"
+        },
+        methods:{
+            reverseMessage:function(){
+                console.log(this);//this指的就是vue
+                //所有的数据都可以通过vue.数据访问到
+                this.message = this.message.split('').reverse().join('')
+            }
+        },
+        test:function(){
+            this.reverseMessage();//所有的方法也可以通过vue.方法名访问到
+        }
+
+    })
+</script>

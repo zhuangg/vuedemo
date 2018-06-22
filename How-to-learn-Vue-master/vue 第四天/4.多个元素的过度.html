@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多个元素的过渡</title>
+    <link rel="stylesheet" href="animate.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="show=!show">打开操作按钮</button>
+    <!--
+        两个元素的切换,需要设置过渡的模式mode,
+    -->
+    <transition name="ani" leave-active-class="animated fadeOut" enter-active-class="animated fadeIn" mode="out-in">
+        <!--相同元素需要加key来区分-->
+        <button v-if="show" key="edit">编辑</button>
+        <button v-else key="login">登录</button>
+        <!--<p v-else>请您先登录</p>-->
+    </transition>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            show:true
+        }
+    })
+</script>
